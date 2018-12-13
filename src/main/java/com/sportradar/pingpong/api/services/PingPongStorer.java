@@ -43,6 +43,10 @@ public class PingPongStorer {
   }
 
   public Integer addPoint(Player player) {
+    if (sidesAreSwitched()) {
+      player = switchPlayer(player);
+    }
+
     if (player == Player.PLAYER_ONE) {
       return addEvent(Event.POINT_PLAYER_ONE);
     }
@@ -50,6 +54,10 @@ public class PingPongStorer {
   }
 
   public Integer removePoint(Player player) {
+    if (sidesAreSwitched()) {
+      player = switchPlayer(player);
+    }
+
     if (player == Player.PLAYER_ONE) {
       return addEvent(Event.UNDO_POINT_PLAYER_ONE);
     }
@@ -149,6 +157,18 @@ public class PingPongStorer {
                 .player2(resultSet.getInt("player2"))
                 .pointsInSet(resultSet.getInt("pointsInSet"))
                 .build());
+  }
+
+  private boolean sidesAreSwitched() {
+    ResultDto currentResult = getResult();
+    return (currentResult.getPlayerOneSets() + currentResult.getPlayerTwoSets()) % 2 == 1;
+  }
+
+  private Player switchPlayer(Player player) {
+    if (player == Player.PLAYER_ONE) {
+      return Player.PLAYER_TWO;
+    }
+    return Player.PLAYER_TWO;
   }
 
   private Integer addEvent(Event event) {
