@@ -27,9 +27,9 @@ public class ApiController {
     return pingPongStorer.addPoint(player);
   }
 
-  @RequestMapping(value = "/undoPoint/{player}", method = RequestMethod.GET)
-  public Integer undoPoint(@PathVariable("player") Player player) {
-    return pingPongStorer.removePoint(player);
+  @RequestMapping(value = "/undoPoint", method = RequestMethod.GET)
+  public void undoPoint() {
+    pingPongStorer.removePoint();
   }
 
   @RequestMapping(value = "/matchStart", method = RequestMethod.GET)

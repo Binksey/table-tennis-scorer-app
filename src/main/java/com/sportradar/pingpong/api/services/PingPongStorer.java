@@ -53,15 +53,11 @@ public class PingPongStorer {
     return addEvent(Event.POINT_PLAYER_TWO);
   }
 
-  public Integer removePoint(Player player) {
-    if (sidesAreSwitched()) {
-      player = switchPlayer(player);
-    }
+  public void removePoint() {
+    Integer latestGameId = getLatestGameId();
 
-    if (player == Player.PLAYER_ONE) {
-      return addEvent(Event.UNDO_POINT_PLAYER_ONE);
-    }
-    return addEvent(Event.UNDO_POINT_PLAYER_TWO);
+    String query = "DELETE FROM game_events WHERE game_id = " + latestGameId + " LIMIT 1";
+    jdbcTemplate.execute(query);
   }
 
   public ResultDto getResult() {

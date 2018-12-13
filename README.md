@@ -14,7 +14,6 @@ Additional parameters:
  
  * **/addPoint/PLAYER_ONE**
  * **/addPoint/PLAYER_TWO**
- * **/undoPoint/PLAYER_ONE**
- * **/undoPoint/PLAYER_TWO**
+ * **/undoPoint**
  * **/result**
  
