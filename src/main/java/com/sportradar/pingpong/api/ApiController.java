@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ApiController {
   private final PingPongStorer pingPongStorer;
 
+  @CrossOrigin
   @RequestMapping(
       value = "/result",
       method = RequestMethod.GET,
@@ -22,16 +23,19 @@ public class ApiController {
     return pingPongStorer.getResult();
   }
 
+  @CrossOrigin
   @RequestMapping(value = "/addPoint/{player}", method = RequestMethod.GET)
   public Integer addPoint(@PathVariable("player") Player player) {
     return pingPongStorer.addPoint(player);
   }
 
+  @CrossOrigin
   @RequestMapping(value = "/undoPoint", method = RequestMethod.GET)
   public void undoPoint() {
     pingPongStorer.removePoint();
   }
 
+  @CrossOrigin
   @RequestMapping(value = "/matchStart", method = RequestMethod.GET)
   public Integer matchStart(
       @RequestParam(name = "player1", defaultValue = "1") Integer player1,
@@ -41,6 +45,7 @@ public class ApiController {
     return pingPongStorer.startGame(player1, player2, bestOf, totalPointsInSet);
   }
 
+  @CrossOrigin
   @RequestMapping(value = "/chooseGame", method = RequestMethod.GET)
   public String chooseGame() {
 
