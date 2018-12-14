@@ -79,12 +79,6 @@ public class PingPongStorer {
       if (gameEvent == Event.POINT_PLAYER_TWO) {
         playerTwoPoints++;
       }
-      if (gameEvent == Event.UNDO_POINT_PLAYER_ONE) {
-        playerOnePoints--;
-      }
-      if (gameEvent == Event.UNDO_POINT_PLAYER_TWO) {
-        playerTwoPoints--;
-      }
 
       Player playerWhoWonTheSet = whoWonTheSet(playerOnePoints, playerTwoPoints, totalPointsInSet);
 
@@ -157,14 +151,14 @@ public class PingPongStorer {
 
   private boolean sidesAreSwitched() {
     ResultDto currentResult = getResult();
-    return (currentResult.getPlayerOneSets() + currentResult.getPlayerTwoSets()) % 2 == 1;
+    return ((currentResult.getPlayerOneSets() + currentResult.getPlayerTwoSets()) % 2 == 1);
   }
 
   private Player switchPlayer(Player player) {
     if (player == Player.PLAYER_ONE) {
       return Player.PLAYER_TWO;
     }
-    return Player.PLAYER_TWO;
+    return Player.PLAYER_ONE;
   }
 
   private Integer addEvent(Event event) {
