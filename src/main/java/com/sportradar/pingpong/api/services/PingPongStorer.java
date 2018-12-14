@@ -114,10 +114,10 @@ public class PingPongStorer {
 
   private Player whoWonTheSet(
       Integer playerOnePoints, Integer playerTwoPoints, Integer totalPointsInSet) {
-    if (playerOnePoints >= totalPointsInSet && playerOnePoints > playerTwoPoints + 1) {
+    if (playerOnePoints >= totalPointsInSet && playerOnePoints > (playerTwoPoints + 1)) {
       return Player.PLAYER_ONE;
     }
-    if (playerTwoPoints >= totalPointsInSet && playerTwoPoints > playerOnePoints + 1) {
+    if (playerTwoPoints >= totalPointsInSet && playerTwoPoints > (playerOnePoints + 1)) {
       return Player.PLAYER_TWO;
     }
     return Player.NONE;
